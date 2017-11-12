@@ -1018,6 +1018,7 @@ class Cluster {
  public:
   const long long m_element_start;
   long long GetPosition() const;  // offset relative to segment
+  long long GetFirstBlockPos() const;
 
   long GetIndex() const;
   long long GetElementSize() const;
@@ -1026,6 +1027,8 @@ class Cluster {
   // long long Unparsed() const;
 
  private:
+  mutable long long m_first_block_pos = -1;
+
   long m_index;
   mutable long long m_pos;
   // mutable long long m_size;

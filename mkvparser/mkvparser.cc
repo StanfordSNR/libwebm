@@ -6196,6 +6196,10 @@ long Cluster::Load(long long& pos, long& len) const {
 
       new_pos = pos + size;
 
+      if (m_first_block_pos == -1) {
+        m_first_block_pos = new_pos;
+      }
+
       if (bBlock)
         break;
     } else if (id == libwebm::kMkvBlockGroup) {
@@ -6824,6 +6828,10 @@ long long Cluster::GetPosition() const {
   assert(pos >= 0);
 
   return pos;
+}
+
+long long Cluster::GetFirstBlockPos() const {
+  return m_first_block_pos;
 }
 
 long long Cluster::GetElementSize() const { return m_element_size; }
